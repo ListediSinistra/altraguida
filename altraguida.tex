@@ -1,7 +1,181 @@
-\documentclass[a4paper,10pt]{book}
-\usepackage[utf8]{inputenc}
+\documentclass[12pt,a4paper,twoside]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin1]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{amsmath,amssymb,amsfonts,textcomp}
+\usepackage{color}
+\usepackage{calc}
+\usepackage{eurosym}
+\usepackage[dvips]{geometry}
+\usepackage{eso-pic}
+\usepackage{graphicx}
+%\usepackage{makeidx}
+\usepackage{fancyhdr,fancybox}
+%\usepackage[none,light,timestamp]{draftcopy}
+\usepackage{multicol}
+\usepackage{enumitem}
+\usepackage{url}
+\usepackage[breaklinks=true]{hyperref}
+%%%%%%%%%%
+%%%%%%%%%% 
+\usepackage{sectsty}
+\usepackage{ifthen}
+\usepackage{sectionbox}
+\usepackage{skull}
+\usepackage{lettrine}
+
+\doublesectionbox
+\shadowsubsectionbox
+\shadowsubsubsectionbox
+
+
+\definecolor{sectboxrulecol}{rgb}{0,0,0}
+\definecolor{sectboxfillcol}{rgb}{0,0,0}
+\definecolor{sectboxtextcol}{rgb}{1,1,1}
+
+\definecolor{subsectboxrulecol}{rgb}{0.75,0.75,0.75}
+\definecolor{subsectboxfillcol}{rgb}{0.9,0.9,0.9}
+\definecolor{subsectboxtextcol}{rgb}{0,0,0}
+
+\definecolor{subsubsectboxrulecol}{rgb}{0.75,0.75,0.75}
+\definecolor{subsubsectboxfillcol}{rgb}{0.9,0.9,0.9}
+\definecolor{subsubsectboxtextcol}{rgb}{0,0,0}
+
+\newcommand{\mysecname}{INDICE}
+\newcommand{\mysec}[1]{%\null\vskip24pt%
+\gdef\mysecname{\uppercase{#1}}
+%\renewcommand{\mysecname}{\uppercase{#1}}
+\begin{sectionbox}{#1}\relax
+\end{sectionbox}}
+\sectionfont{\sffamily}%\textcolor[gray]{0.2}}
+
+\newcommand{\mysubsecname}{\relax}
+\newcommand{\mysubsec}[1]{%\null\vskip12pt%
+%\renewcommand{\mysubsecname}{#1}
+\gdef\mysubsecname{#1}
+\relax\vskip6pt \begin{subsectionbox}{#1}\relax
+\end{subsectionbox}}
+\subsectionfont{\sffamily}%\textcolor[gray]{0.2}}
+
+\newcommand{\mysubsubsec}[1]{%\null\vskip6pt%
+\relax\vskip6pt \begin{subsubsectionbox}{#1}\relax
+\end{subsubsectionbox}}
+\subsubsectionfont{\sffamily}%\textcolor[gray]{0.2}}
+
+\makeatletter\renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
+                                    {12pt \@plus1ex \@minus.2ex}%
+                                    {-1em}%
+                                    {\normalsize\bfseries\sffamily}}
+\makeatother         
+
+%\paragraphfont{\sffamily}
+                           
+%%%%%%%%%%
+%%%%%%%%%% 
+
+
+\geometry{top=0.6in,bottom=0.7in,left=0.7in,right=0.7in}
+%\geometry[E]{top=0.7in,bottom=0.7in,left=0.7in,right=0.6in}
+%\hypersetup{colorlinks=true, linkcolor=blue, filecolor=blue, pagecolor=blue, urlcolor=blue}
+%\draftcopySetGrey{0.90}
+%\draftcopyName{Bozza}{150}
+
+
+%\newcommand{\collegamento}[2]{\catcode`\%11\relax {\href{#1}{\underline{#2}}}\catcode`\%14\relax}
+
+%\newcommand{\collegamento}[2]{\href{#1}{\underline{#2}}}
+
+\newcommand{\collegamento}[2]{\href{#1}{\tt #2}}
+
+\newcommand{\collegamail}[1]{\collegamento{mailto:#1}{#1}}
+
+\newcommand{\gdstud}{ \collegamento{http://www.unimib.it/upload/bicocca\%20guida\%20\%202007\%20-\%20INTERNET\%20-.pdf}{Guida dello
+Studente}}
+
+%\newcommand{\LdS}{{\textbf{Listedi}}{\textbf{\textcolor[rgb]{0.8,0.0,0.2}{Sinistra}}}}
+%\newcommand{\LdS}{Listedi\textcolor[rgb]{0.8,0.0,0.2}{Sinistra}}
+\newcommand{\LdS}{{\textbf{Listedi}}{\textbf{\textcolor[rgb]{0.3,0.3,0.3}{Sinistra}}}}
+
+\newcommand{\tab}{\hspace{5mm}}
+
+\newcommand\mynote[1]{\index{aaa@\textbf{Tom:}}\marginpar%
+{\raggedright\rule{.08\marginparwidth}{12pt}\vbox{\raisebox{-11pt}{\hbox{\hskip 2pt \scriptsize{\sl Tom:}}}\\\rule{.92\marginparwidth}{.4pt}}\\ \footnotesize{#1}}
+}%
+
+\newcommand{\postit}[1]{\textcolor[rgb]{0,0.8,0.2}{#1}}
+
+\newcommand\NdP[1]{\index{aaa@\textbf{le note di Pietro sono alle pagg.:;}}\marginpar%
+{\raggedright\rule{.08\marginparwidth}{12pt}\vbox{\raisebox{-11pt}{\hbox{\hskip 2pt \scriptsize{\sl NdP:}}}\\\rule{.92\marginparwidth}{.4pt}}\\ \footnotesize{#1}}}%
+\renewcommand\NdP[1]{\relax}
+
+\newcommand{\boldsansserif}[1]{\textsf{\textbf{#1}}}
+
+%\newcounter\warningcounter
+%\setcounter{\warningcounter}{1}
+%\newcommand{\warning}[2]{\setcounter\warningcounter#2\fbox{{\ifnum\warningcounter=3 \skull\skull\skull \elseif \ifnum\warningcounter=1 \skull\skull \fi\else \skull \fi} \textbf{ATTENZIONE:}#1}}
+
+%\newcommand{\mywarning}[1]{\noindent\ovalbox{\hskip12pt\begin{minipage}{0.85\columnwidth}$\skull\skull\skull$ \textbf{ATTENZIONE!}\\#1\end{minipage}\hskip12pt}}
+
+\newcommand{\mywarning}[1]{\noindent\ovalbox{\hskip12pt\begin{minipage}{0.85\columnwidth}\lettrine[image=true, lines=2, loversize=0.25]{warn.pdf}{} \textbf{ATTENZIONE!}\\#1\end{minipage}\hskip12pt}}
+
+
+\newcommand{\vedi}[1]{(vedi p.~\pageref{#1})}
+
+\setlist{noitemsep, topsep=0pt, leftmargin=15pt, labelindent=0pt}
+\setlength{\headheight}{15pt}
+\setlength{\columnsep}{24pt} 
+\setlength{\columnseprule}{0.4pt}   
+\setlength{\columnwidth}{10cm}
+
+
+\pagestyle{fancy}
+%\newcommand{\chaptermark}[1]{\markboth{#1}{}}
+%\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
+\fancyhf{}
+\fancyhead[LO]{\sf\bfseries\thepage \quad www.\LdS.org}
+\fancyhead[RE]{\LdS @gmail.com \quad \sf\bfseries\thepage}
+%\fancyhead[LO]{\sf\bfseries\rightmark}
+\fancyhead[LE]{\sf\bfseries \relax\quad\thesubsection{} \quad \mysubsecname}
+%\fancyhead[RE]{\sf\bfseries\leftmark}
+\fancyhead[RO]{\sf\bfseries \ifnum\thesection=0 \relax \else \thesection \fi{}\quad \mysecname\quad}
+\marginparwidth45pt
+%\fancyfoot[C]{\includegraphics[height=9mm, keepaspectratio]{logo.pdf}}
+
+\makeindex
+
+%qui si definisce lo sfondo da richiamre con un \AddToShipoutPicture{\Sfonda}
+%si disattiva con \ClearShipoutPicture - si veda pacchetto eso-pic -
+%\include{sfonda}
+
+
+\hyphenation{e-ster-no in-di-spen-sa-bi-le tra-sfe-ri-men-ti spe-cia-li-sti-ca ma-tu-ra-ti de-sti-na-zio-ne bru-sco cre-di-ti o-spe-da-li pos-si-bi-li-t\'a i-ni-zio neu-ro-psi-co-lo-gi-a i-nol-tre acqui-sto Se-sto in-va-li-di-t\`a auto-va-lu-ta-zio-ne a-spet-ti sod-di-sfi o-gni Ni-guar-da E-di-fi-cio li-vel-lo luo-ghi o-biet-ti-vi fun-zio-na-men-to con-si-de-ra-zio-ne li-ber-t\'a ap-pro-fit-ta mi-ni-ste-ro in-te-res-se cul-tu-ra-le per-met-ten-do e-ste-ro i-sti-tu-zio-ne ri-chie-sta bre-scia ber-ga-mo e-ma-na-ti li-bri bi-blio-te-che i-nol-tre que-sta in-du-stri-e e-du-ca-ti-ve du-re-ran-no ri-ser-va-te gra-dua-to-ria me-ri-to e-so-ne-ri so-cie-t\'a i-scri-zio-ne bi-blio-te-ca o-rien-ta-men-to or-ga-niz-za-ti-vo re-gi-stra-ti po-ter re-qui-si-ti in-se-ri-ti ri-ce-ve-ran-no que-stio-na-rio in-di-vi-dua-re di-sa-bi-li i-ni-zia-ti-ve a-scol-ta-re pro-ble-ma-ti-che cam-bia-men-to am-mi-ni-stra-zio-ni per-so-na-le scri-vi-ci per-met-to-no si-tu-a-to fa-ci-li-ta-re rap-pre-sen-tan-ti bio-lo-gi-che cur-ri-cu-la ma-gi-stra-le o-biet-ti-vo ca-rat-te-riz-za-zio-ne geo-lo-gi-che af-fac-ciar-si ca-len-da-rio scien-ti-fi-co ma-na-ge-ment sta-ti-sti-ca col-la-bo-ra-zio-ne bi-so-gno-si co-sti-tu-i-sco-no i-ni-zia-ti-va me-dian-te si-tua-zio-ni tes-se-rar-si ri-sto-ran-te qua-li-t\'a so-li-da-le se-ra-te na-vi-gli-o e-stre-ma-men-te in-te-res-san-tis-si-me o-ri-gi-na-le ras-se-gne ca-po-la-vo-ri spin-go-no e-si-to mec-ca-ni-smi pre-oc-cu-pa-te-vi  di-scu-to-no e-di-fi-cio ma-te-ma-ti-ca o-biet-ti-vo la-bo-ra-to-ri si-gni-fi-ca-ti-va me-di-ci-na a-na-li-si si-gni-fi-ca e-sem-pi-o chi-a-ma-to que-sti-o-ni glo-ba-le a-zi-en-da-li-sti-co in-ter-na-zio-na-li ge-ne-ra-li-sta at-ti-vi-t\'a e-du-ca-zio-ne la-bo-ra-to-rio ca-rat-te-riz-za rap-pre-sen-tan-ti fun-zio-na-li cia-scun co-min-cia-no}
 
 \begin{document}
+%\AddToShipoutPicture{\Sfonda}
+\sf  %font computer modern sans serif 
+%
+\pagenumbering{roman}
+\title{L'\emph{altra}\/guida\footnote{{\sf versione 2.2 del \today}}}
+\author{realizzata da \LdS
+\footnote{\textsf{grazie al contributo derivante dal bando per le attivit\`a delle associazioni
+studentesche dell'Universit\`a degli Studi di Milano--Bicocca \collegamento{http://www.unimib.it}{www.unimib.it}.\newline \null \newline}.}\\ 
+Rappresentanti degli Studenti \\ \collegamento{http://www.listedisinistra.org}{www.\LdS.org}\\ 
+\collegamento{mailto:listedisinistra@gmail.com}{\LdS@gmail.com}}
+\date{Anno Accademico PROVA}
+
+\maketitle
+
+\thispagestyle{empty}
+
+\vskip.5in
+\begin{multicols}{2}
+\tableofcontents
+\end{multicols}
+\vskip6pt \hrule \vskip6pt
+\begin{multicols}{2}
+\pagenumbering{arabic}
+
+
 
 \include{capitoli/capitolo1.tex}
 \include{capitoli/capitolo2.tex}
@@ -23,4 +197,8 @@
 \include{capitoli/capitolo6.tex}
 \include{capitoli/capitolo7.tex}
 
+\end{multicols}
+%\printindex
+
 \end{document}
+
